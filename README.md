@@ -1,11 +1,11 @@
 # Link2QR
-Python script to generate QR code from link
+Python script to generate QR code from link and vice versa
 
 # Installation
 1. Clone this repository.
 2. Install qrcode library
    ```
-   pip install qrcode
+   pip install qrcode[pil] opencv-python pyzbar
    ```
 3. Run the python script
    ```
