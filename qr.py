@@ -1,10 +1,11 @@
 import qrcode
 import cv2
 from pyzbar.pyzbar import decode
+import os
 
 def generate_qr_code(link, output_file="qrcode.png"):
     """Generates a QR code from a given link."""
-    qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4)
+    qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=1)
     qr.add_data(link)
     qr.make(fit=True)
     
@@ -14,7 +15,15 @@ def generate_qr_code(link, output_file="qrcode.png"):
 
 def decode_qr_code(image_path):
     """Decodes a QR code from an image file."""
+    if not os.path.exists(image_path):
+        print(f"Error: File '{image_path}' not found.")
+        return
+    
     image = cv2.imread(image_path)
+    if image is None:
+        print(f"Error: Unable to read the image at '{image_path}'. Make sure it's a valid image file.")
+        return
+    
     decoded_objects = decode(image)
     
     if decoded_objects:
