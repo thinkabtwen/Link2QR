@@ -8,7 +8,7 @@ def generate_qr_code(link, output_file="qrcode.png"):
     qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=1)
     qr.add_data(link)
     qr.make(fit=True)
-    
+        
     img = qr.make_image(fill="black", back_color="white")
     img.save(output_file)
     print(f"QR code generated and saved as {output_file}")
@@ -36,11 +36,17 @@ def main():
     choice = input("Do you want to generate (G) or decode (D) a QR code? ").strip().lower()
     if choice == "g":
         link = input("Enter the link to generate a QR code: ").strip()
-        output_file = input("Enter the output file name (default: qrcode.png): ").strip() or "qrcode.png"
-        generate_qr_code(link, output_file)
+        if link:
+            output_file = input("Enter the output file name (default: qrcode.png): ").strip() or "qrcode.png"
+            generate_qr_code(link, output_file)
+        else:
+            print("Error: No link provided to generate QR code.")
     elif choice == "d":
         image_path = input("Enter the path of the QR code image: ").strip()
-        decode_qr_code(image_path)
+        if image_path:
+            decode_qr_code(image_path)
+        else:
+            print("Error: No image path provided to decode QR code.")  
     else:
         print("Invalid choice. Please enter 'G' to generate or 'D' to decode.")
 
