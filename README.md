@@ -1,5 +1,5 @@
 # Link2QR
-Python script to generate QR code from link and vice versa
+A Python-based tool that seamlessly converts links into QR codes and extracts links from QR codes! Whether you're sharing URLs efficiently or decoding QR images, this script has got you covered.
 
 # Installation
 1. Clone this repository.
